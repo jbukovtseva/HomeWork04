@@ -1,15 +1,14 @@
 ﻿Console.Write("Введите число А: ");
 string a = Console.ReadLine();
 
-Console.Write("Введите натуральное число B (от 1): ");
+Console.Write("Введите число B: ");
 string b = Console.ReadLine();
 
-double degreeResult;
+int degreeResult;
 
-double RaiseToADegree(double number, int degreeOfNumber)
+int RaiseToADegree(int number, int degreeOfNumber)
 {
-    double degree = 1;
-
+    int degree = 1;
     for (int i = 0; i < degreeOfNumber; i++)
     {
         degree *= number;
@@ -17,22 +16,26 @@ double RaiseToADegree(double number, int degreeOfNumber)
     return degree;
 }
 
-
-void ExceptionHandling(string enterA, string enterB)
+bool LetterInNumbers(string let)
 {
-    bool yesDouble = double.TryParse(enterA, out double resultNumber);
-    bool yesInt = int.TryParse(enterB, out int result);
+    int n = let.Length;
 
-    if (yesInt && yesDouble && result > 0)
+    for (int i = 0; i < n; i++)
     {
-        degreeResult = RaiseToADegree(resultNumber, result);
-        Console.WriteLine("{0} в степени {1} = {2}",
-                          resultNumber, result, degreeResult);
+        // if (Char.IsLetter(let[i]) == true || Char.IsSymbol(let[i]) == true)
+        if (!Char.IsDigit(let[i]) || int.Parse(let) == 0)
+        {
+            return false;
+        }
     }
-    else 
-    {
-        Console.WriteLine("{0}, {1} -> Некорректный ввод!", a, b);
-    }
+    return true;
 }
 
-ExceptionHandling(a, b);
+if (LetterInNumbers(a) && LetterInNumbers(b))
+{
+    int aInt = int.Parse(a);
+    int bInt = int.Parse(b);
+    degreeResult = RaiseToADegree(aInt, bInt);
+    Console.WriteLine("{0} в степени {1} = {2}", aInt, bInt, degreeResult);
+}
+else Console.WriteLine("{0}, {1} -> Некорректный ввод!\nВедите цисла от 1 или равные 1", a, b);
