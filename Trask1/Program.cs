@@ -1,8 +1,8 @@
 ﻿Console.Write("Введите число А: ");
-string a = Console.ReadLine();
+string a = Console.ReadLine()!;
 
 Console.Write("Введите число B: ");
-string b = Console.ReadLine();
+string b = Console.ReadLine()!;
 
 int degreeResult;
 
